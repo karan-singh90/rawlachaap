@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv"
 import mongoose from "mongoose";
 import categoryRoute from "./api/routes/categoryRoute.js";
+import orderRoute from "./api/routes/orderRoute.js";
 
 const app =express();
 dotenv.config();
@@ -36,6 +37,7 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.use("/api/category",categoryRoute)
+app.use("/api/order",orderRoute)
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;

@@ -1,6 +1,6 @@
 // import Category from "../models/Category";
 
-// const insertCatgory=async(req,res,next)=>{
+// export const insertCatgory=async(req,res,next)=>{
 //     console.log("Request body ::",req.body)
 //   const category = new Category(req.body);
 
@@ -13,4 +13,3 @@
 //   }
 // }
 
-// export default CategoryService;
