@@ -1,0 +1,16 @@
+.header {
+  margin: 1px 4px;
+  padding: 2px;
+  display: flex;
+  justify-content: center; /* Horizontally center content */
+  align-items: center;
+  background-color: lightgray;
+  height: 60px;
+}
+
+.h1{
+text-align: center;
+color:  #333
+}
+
+

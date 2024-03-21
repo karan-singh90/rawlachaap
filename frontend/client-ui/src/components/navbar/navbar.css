@@ -1,0 +1,22 @@
+.navbar {
+    margin: 0px 4px;
+    padding: 2px;
+    background-color: #71797E;
+    height: 40px;
+  }
+
+  .nav-ul{
+    text-align: left;
+    list-style-type: none;
+  }
+.nav-li{
+   display: inline; 
+   margin :5px;
+   pad: 5px;
+   
+}
+.a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+  }

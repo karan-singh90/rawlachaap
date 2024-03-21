@@ -1,0 +1,39 @@
+.main {
+  height: 380px;
+  background-color: #eeeee4;
+  display: flex;
+  width: 99%;
+  margin: 0px 4px;
+}
+.sidebar {
+  height: 360px;
+  background-color: #eeeee4;
+  /* display: inline-block; */
+  /* flex:1; */
+  padding: 4px;
+  width: 200px;
+  margin: 0px 4px;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.sidebar-ul {
+  list-style-type: none;
+}
+
+/* .cat-li{
+} */
+
+.side-a {
+  text-decoration: none;
+}
+
+.content {
+  height: 360px;
+  background-color: white;
+  /* display: inline-block; */
+  padding: 4px;
+  width: 85%;
+  margin: 0px 10px;
+  text-align: center;
+}
