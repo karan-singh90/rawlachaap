@@ -15,8 +15,8 @@ export const Item = new mongoose.Schema({
   },
   family_price: {
     type: Number,
-    required: false,
+    required: true,
   },
 });
 
-// export default mongoose.model("Item", Item)
+export default mongoose.model("Item", Item);

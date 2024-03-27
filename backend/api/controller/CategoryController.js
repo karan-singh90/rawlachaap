@@ -15,8 +15,8 @@ export const createCategory = async (req, res, next) => {
 
 export const getCategoryById = async (req, res, next) => {
   try {
-    console.log("Id ::",req.params)
-    const obj =await Category.findById(req.params.id);
+    console.log("Id ::", req.params);
+    const obj = await Category.findById(req.params.id);
     res.status(200).json(obj);
   } catch (error) {
     next(error);
@@ -24,34 +24,92 @@ export const getCategoryById = async (req, res, next) => {
 };
 
 export const getAllCategories = async (req, res, next) => {
-    try {
-      const obj =await Category.find();
-      res.status(200).json(obj);
-    } catch (error) {
-      next(error);
+  try {
+    const obj = await Category.find();
+    res.status(200).json(obj);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteCategoryById = async (req, res, next) => {
+  try {
+    console.log("Id ::", req.params);
+    const obj = await Category.findByIdAndDelete(req.params.id);
+    res.status(200).json(obj);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateCategoryById = async (req, res, next) => {
+  try {
+    const updatedCategory = await Category.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+    res.status(200).json(updatedCategory);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteItem = async (req, res, next) => {
+  try {
+    const parentId = req.params.parentId;
+    console.log("parentId ::", req.params.parentId);
+
+    const childId = req.params.childId;
+    console.log("childId ::", req.params.childId);
+
+    const updatedDocument = await Category.findByIdAndUpdate(
+      parentId,
+      {
+        $pull: { items: { _id: childId } },
+      },
+      { new: true }
+    );
+
+    if (!updatedDocument) {
+      console.log("Category document not found");
+      return;
     }
-  };
 
-  export const deleteCategoryById = async (req, res, next) => {
-    try {
-      console.log("Id ::",req.params)
-      const obj =await Category.findByIdAndDelete(req.params.id);
-      res.status(200).json(obj);
-    } catch (error) {
-      next(error);
+    console.log("Updated document:", updatedDocument);
+    res.status(200).json(updatedDocument);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateItem = async (req, res, next) => {
+  try {
+    const parentId = req.params.parentId;
+    console.log("parentId ::", req.params.parentId);
+
+    const childId = req.params.childId;
+    console.log("childId ::", req.params.childId);
+
+    const updatedData = req.body.items[0];
+    if (updatedData.hasOwnProperty("_id")) {
+      delete updatedData["_id"];
     }
-  };
 
-  export const updateCategoryById = async (req, res, next) => {
-    try {
-      const updatedCategory =await Category.findByIdAndUpdate(req.params.id,
-        { $set: req.body },
-        { new: true });
-      res.status(200).json(updatedCategory);
-    } catch (error) {
-      next(error);
+    const updatedDocument = await Category.findOneAndUpdate(
+      { _id: parentId, "items._id": childId },
+      { $set: { "items.$": updatedData } },
+      { new: true }
+    );
+
+    if (!updatedDocument) {
+      console.log("items document not found");
+      return;
     }
-  };
 
-
-
+    console.log("Updated document:", updatedDocument);
+    res.status(200).json(updatedDocument);
+  } catch (error) {
+    next(error);
+  }
+};

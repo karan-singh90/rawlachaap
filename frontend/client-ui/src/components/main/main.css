@@ -11,10 +11,11 @@
   /* display: inline-block; */
   /* flex:1; */
   padding: 4px;
-  width: 200px;
+  width: 350px;
   margin: 0px 4px;
-  border: 1px solid black;
-  border-radius: 2px;
+  /* border: 1px solid black; */
+  /* border-radius: 2px; */
+  justify-content: center;
 }
 
 .sidebar-ul {
@@ -36,4 +37,5 @@
   width: 85%;
   margin: 0px 10px;
   text-align: center;
+  justify-content: center;
 }
